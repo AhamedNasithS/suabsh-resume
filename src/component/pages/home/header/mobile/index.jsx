@@ -2,6 +2,7 @@ import React from 'react'
 import { Logo } from '../svg';
 import { motion } from "framer-motion";
 import { Download } from 'lucide-react';
+import pdf from "../Subash-CV.pdf";
 
 
 export default function Mobile() {
@@ -15,10 +16,21 @@ export default function Mobile() {
                     </div>
                 </a>
                 <div className="flex gap-[10px] items-center">
-                    <button className='px-[16px] py-[8px] flex rounded-full bg-[#000000] border border-[#0A7CFF] inter-medium gap-[4px] items-center text-[12px] text-white' style={{ boxShadow: "0px 0px 30px 0px #0A7CFFCC inset" }}>
-                        <p>Download CV</p>
-                        <Download size={10}/>
-                    </button>
+                    <a href={pdf} download>
+                        <button
+                            onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = `${pdf}`; // path relative to public folder
+                                link.download = 'Subash-CV.pdf'; // file name for download
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }}
+                            className='px-[16px] py-[8px] flex rounded-full bg-[#000000] border border-[#0A7CFF] inter-medium gap-[4px] items-center text-[12px] text-white' style={{ boxShadow: "0px 0px 30px 0px #0A7CFFCC inset" }}>
+                            <p>Download CV</p>
+                            <Download size={10} />
+                        </button>
+                    </a>
                 </div>
             </div>
             {/* <div className={`${isOpen ? "max-h-full opacity-100 pb-6" : "max-h-0 opacity-0 hidden"} w-full transition-all duration-300 relative rounded-b-[20px] bg-[#FFF] z-[50]`}>

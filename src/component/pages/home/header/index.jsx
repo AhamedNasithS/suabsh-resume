@@ -46,12 +46,22 @@ export default function Header({ headerTab, setHeaderTab }) {
     }
   };
 
+  const handleServiceClick = () => {
+    const element = document.getElementById('service');
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 90,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   React.useEffect(() => {
     window.onresize = function () {
       setPosition(window.innerWidth <= 645);
     };
   }, []);
   return (
-    position ? (<Mobile />) : (<Desktop headerTab={headerTab} setHeaderTab={setHeaderTab} handleHomeClick={handleHomeClick} handleContactClick={handleContactClick} handleAboutClick={handleAboutClick} handleWorkClick={handleWorkClick} />)
+    position ? (<Mobile />) : (<Desktop headerTab={headerTab} setHeaderTab={setHeaderTab} handleHomeClick={handleHomeClick} handleContactClick={handleContactClick} handleAboutClick={handleAboutClick} handleWorkClick={handleWorkClick} handleServiceClick={handleServiceClick} />)
   )
 }

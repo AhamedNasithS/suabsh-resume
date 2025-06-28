@@ -6,6 +6,7 @@ import About from './about'
 import { PiStarFourFill } from "react-icons/pi";
 import Form from './form'
 import Footer from './footer'
+import Service from './service'
 
 export default function Home() {
   const [headerTab, setHeaderTab] = useState("Home");
@@ -13,6 +14,8 @@ export default function Home() {
   const workRef = useRef(null);
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
+  const serviceRef = useRef(null);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,6 +26,7 @@ export default function Home() {
             if (id === 'home') setHeaderTab('Home');
             else if (id === 'work') setHeaderTab('Work');
             else if (id === 'about') setHeaderTab('About');
+            else if (id === 'service') setHeaderTab('Service');
             else if (id === 'contact') setHeaderTab('Contact');
           }
         });
@@ -30,7 +34,7 @@ export default function Home() {
       { threshold: 0.5 }
     );
   
-    [homeRef, workRef, aboutRef, contactRef].forEach(ref => {
+    [homeRef, workRef, aboutRef, serviceRef, contactRef].forEach(ref => {
       if (ref.current) observer.observe(ref.current);
     });
   
@@ -66,6 +70,9 @@ export default function Home() {
             <PiStarFourFill className="text-[#0B7DFF] flex-shrink-0" />
           </div>
         </div>
+      </div>
+      <div id='service' ref={serviceRef} className='w-full'>
+        <Service />
       </div>
       <div id='contact' ref={contactRef} className='w-full'>
         <Form />
